@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    browser: true, 
+    browser: true,
     node: true,
   },
   parser: 'vue-eslint-parser',
@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'vue'],
   extends: [
-    'eslint:recommended', 
+    'eslint:recommended',
     'plugin:nuxt/recommended',
     'plugin:vue/recommended',
     'plugin:@typescript-eslint/recommended',
