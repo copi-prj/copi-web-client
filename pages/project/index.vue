@@ -8,7 +8,8 @@
         proceed,
         position,
         technologyStack,
-        deadLine,
+        startDate,
+        endDate,
         username,
         hits,
         commentsCount,
@@ -26,7 +27,8 @@
             :proceed="proceed"
             :position="position"
             :technology-stack="technologyStack"
-            :dead-line="deadLine"
+            :start-date="startDate"
+            :end-date="endDate"
             :username="username"
             :hits="hits"
             :comments-count="commentsCount"
