@@ -11,4 +11,7 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
   modules: ['nuxt-quasar-ui'],
+  imports: {
+    autoImport: true,
+  },
 });
