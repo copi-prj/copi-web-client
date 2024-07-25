@@ -7,7 +7,8 @@
     <div>projectId: {{ projectId }}</div>
     <div>position: {{ position }}</div>
     <div>technologyStack: {{ technologyStack }}</div>
-    <div>deadLine: {{ deadLine }}</div>
+    <div>startDate: {{ startDate }}</div>
+    <div>endDate: {{ endDate }}</div>
     <div>username: {{ username }}</div>
     <div>hits: {{ hits }}</div>
     <div>commentsCount: {{ commentsCount }}</div>
@@ -22,7 +23,8 @@ interface Props {
   proceed: string[];
   position: string[];
   technologyStack: string[];
-  deadLine: string;
+  startDate: string;
+  endDate: string;
   username: string;
   hits: string;
   commentsCount: string;
