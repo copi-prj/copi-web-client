@@ -1,20 +1,7 @@
 <template>
   <div class="row q-col-gutter-lg">
     <div
-      v-for="{
-        projectId,
-        menu,
-        title,
-        proceed,
-        position,
-        technologyStack,
-        startDate,
-        endDate,
-        username,
-        hits,
-        commentsCount,
-        path,
-      } in projects"
+      v-for="{ projectId, menu, title, proceed, position, technologyStack, startDate, endDate, username, hits, commentsCount, path } in projects"
       :key="projectId"
       class="col-12 col-md-4 col-sm-6"
     >

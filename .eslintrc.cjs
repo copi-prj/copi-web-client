@@ -42,7 +42,7 @@ module.exports = {
         useTabs: false,
         tabWidth: 2,
         trailingComma: 'all',
-        printWidth: 80,
+        printWidth: 150, // Increase the print width to prevent multi-line formatting
         bracketSpacing: true,
         arrowParens: 'always',
         endOfLine: 'auto',

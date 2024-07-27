@@ -12,8 +12,7 @@ export interface Project {
   commentsCount: number; // 댓글수
   content: string; // 글 내용
 }
-export interface ProjectWithPath
-  extends Omit<Project, 'hits' | 'commentsCount'> {
+export interface ProjectWithPath extends Omit<Project, 'hits' | 'commentsCount'> {
   hits: string;
   commentsCount: string;
   path: string;
