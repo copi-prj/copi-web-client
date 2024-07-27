@@ -60,8 +60,7 @@ const projects: Project[] = [
   {
     projectId: 5,
     menu: '프로젝트',
-    title:
-      '이제 코인세탁소에 방문하지 마세요! 프론트엔드 개발자 오셔서 숟가락만 얹으세요',
+    title: '이제 코인세탁소에 방문하지 마세요! 프론트엔드 개발자 오셔서 숟가락만 얹으세요',
     proceed: ['온라인', '오프라인'],
     position: ['프론트엔드'],
     technologyStack: ['리액트'],
