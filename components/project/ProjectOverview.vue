@@ -4,24 +4,17 @@
       <h2>PROJECT</h2>
       <div class="search-container">
         <div class="search-nav">
-          <select v-model="seletedStacks" class="filter-option stacks">
-            <option disabled value="">기술스택</option>
-            <option>자바스크립트</option>
-            <option>타입스크립트</option>
-            <option>자바</option>
-          </select>
-          <select v-model="seletedPosition" class="filter-option position">
-            <option disabled value="">포지션</option>
-            <option>프론트엔드</option>
-            <option>백엔드</option>
-            <option>데브옵스</option>
-          </select>
-          <select v-model="selectedProceed" class="filter-option proceed">
-            <option disabled value="">진행방식</option>
-            <option>온라인</option>
-            <option>오프라인</option>
-            <option>온오프라인</option>
-          </select>
+          <!-- <SelectComponent v-model="selectedStacks" :options="stackOptions" placeholder="기술스택" />
+          <SelectComponent v-model="selectedPosition" :options="positionOptions" placeholder="포지션" />
+          <SelectComponent v-model="selectedProceed" :options="proceedOptions" placeholder="진행방식" /> -->
+          <div ref="selectContainer" class="select-container">
+            <button class="select-toggle-btn" @click="toggleMenu">{{ selectedOption }}</button>
+            <ul v-show="menuVisible" class="selectMenu">
+              <li v-for="option in options" :key="option" @click="selectOption(option)">
+                <button :class="{ active: option === selectedOption }">{{ option }}</button>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="search-bar">
           <input type="text" placeholder="검색어를 입력해주세요" />
@@ -33,13 +26,72 @@
 </template>
 
 <script setup lang="ts">
-const seletedStacks = ref('');
-const seletedPosition = ref('');
-const selectedProceed = ref('');
+const options = ref(['자바스크립트', '타입스크립트', '자바']);
+const selectedOption = ref('기술스택');
+
+const menuVisible = ref(false);
+const selectContainer = ref<HTMLElement | null>(null);
+
+const toggleMenu = () => {
+  menuVisible.value = !menuVisible.value;
+};
+
+const selectOption = (option: string) => {
+  selectedOption.value = option;
+  menuVisible.value = false;
+};
+
+const handleClickOutside = (event: MouseEvent) => {
+  if (selectContainer.value && !selectContainer.value.contains(event.target as Node)) {
+    menuVisible.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
+
+// const seletedStacks = ref('');
+// const seletedPosition = ref('');
+// const selectedProceed = ref('');
 
 // watch(selectedProceed, (newValue) => {
 //   console.log('진행방식:', newValue);
 // });
+
+// interface Option {
+//   value: string;
+//   text: string;
+// }
+
+// const selectedStacks = ref<string>('');
+// const selectedPosition = ref<string>('');
+// const selectedProceed = ref<string>('');
+
+// const stackOptions: Option[] = [
+//   { value: '', text: '기술스택' },
+//   { value: 'javascript', text: '자바스크립트' },
+//   { value: 'typescript', text: '타입스크립트' },
+//   { value: 'java', text: '자바' },
+// ];
+
+// const positionOptions: Option[] = [
+//   { value: '', text: '포지션' },
+//   { value: 'frontend', text: '프론트엔드' },
+//   { value: 'backend', text: '백엔드' },
+//   { value: 'devops', text: '데브옵스' },
+// ];
+
+// const proceedOptions: Option[] = [
+//   { value: '', text: '진행방식' },
+//   { value: 'online', text: '온라인' },
+//   { value: 'offline', text: '오프라인' },
+//   { value: 'hybrid', text: '온오프라인' },
+// ];
 </script>
 
 <style scoped>
@@ -65,6 +117,51 @@ const selectedProceed = ref('');
   justify-content: space-between;
 }
 
+/* select */
+.select-container {
+  position: relative;
+  display: inline-block;
+}
+
+.select-toggle-btn {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.select-toggle-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.selectMenu {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 350px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.selectMenu button {
+  background: none;
+  padding: 10px 20px;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.selectMenu button:hover {
+  background-color: #e0e0e0;
+}
+
+.selectMenu button.active {
+  background-color: #9856c4;
+  color: white;
+}
+
 /* search bar */
 .search-bar {
   background-color: #fff;
@@ -72,6 +169,7 @@ const selectedProceed = ref('');
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 0 0 0 10px;
   transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .search-bar input[type='text'] {
@@ -83,7 +181,7 @@ const selectedProceed = ref('');
 
 .search-bar button {
   padding: 5px 20px;
-  background-color: #5f2387;
+  background-color: #9856c4;
   color: #fff;
   font-weight: 700;
   border-radius: 0 8px 8px 0;
