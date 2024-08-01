@@ -19,17 +19,20 @@
           <li class="main-nav__item">
             <a href="/">Sign in</a>
           </li>
-          <li class="main-nav__item--cta">
-            <a href="/">Sign up</a>
+          <li class="main-nav__item--cta" @click="openAuthDialog">
+            <a href="javascript:void(0)">Sign up</a>
           </li>
         </ul>
       </nav>
     </header>
     <!-- end: header -->
-    <div class="page-container" :style="pageContainerStyle">
-      <!-- NuxtPage들 나오는 곳임! -->
-      <slot></slot>
-    </div>
+    <main>
+      <div class="page-container" :style="pageContainerStyle">
+        <!-- NuxtPage들 나오는 곳임! -->
+        <slot></slot>
+      </div>
+      <AuthDialog v-model="authDialog" />
+    </main>
     <!-- start: footer-->
     <footer>
       <ul>
@@ -47,6 +50,11 @@
 </template>
 
 <script setup lang="ts">
+import AuthDialog from '~/components/auth/AuthDialog.vue';
+
+const authDialog = ref(false);
+const openAuthDialog = () => (authDialog.value = true);
+
 const pageContainerStyle = computed(() => ({
   maxWidth: '1200px',
   margin: '0 auto',
