@@ -40,7 +40,7 @@
         <li><a href="/">광고상품소개</a></li>
       </ul>
       <div class="copyright">©COPI. ALL RIGHTS RESERVED</div>
-      <a href="#top" class="go-top">위로</a>
+      <a id="goTopBtn" href="#top" class="go-top"><i class="fa-regular fa-circle-up"></i></a>
     </footer>
     <!-- end: footer-->
   </div>
@@ -48,9 +48,40 @@
 
 <script setup lang="ts">
 const pageContainerStyle = computed(() => ({
-  maxWidth: '1080px',
+  maxWidth: '1200px',
   margin: '0 auto',
 }));
+
+const handleScroll = () => {
+  const goTopBtn = document.getElementById('goTopBtn');
+  if (goTopBtn) {
+    window.scrollY > 200 ? goTopBtn.classList.add('show') : goTopBtn.classList.remove('show');
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('scroll', handleScroll);
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+/* 전체 배경 */
+.wrap {
+  background: #1b1b1b;
+}
+
+header,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  z-index: 0;
+}
+</style>
