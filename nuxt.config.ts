@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@/assets/css/main.css', // 글꼴
     '@/assets/css/include.css', // header, footer
     '@/assets/css/button.css',
+    '@fortawesome/fontawesome-free/css/all.min.css',
   ],
   typescript: {
     typeCheck: true,

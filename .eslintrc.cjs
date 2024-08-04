@@ -21,6 +21,8 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
+    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/html-self-closing': [
       'warn',
       {
@@ -42,7 +44,7 @@ module.exports = {
         useTabs: false,
         tabWidth: 2,
         trailingComma: 'all',
-        printWidth: 150, // Increase the print width to prevent multi-line formatting
+        printWidth: 150,
         bracketSpacing: true,
         arrowParens: 'always',
         endOfLine: 'auto',
